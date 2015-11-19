@@ -24,7 +24,7 @@ pondimage = dw.loadImage("pond.bmp")
 dogimage = dw.loadImage("dog2.bmp")
 
 def updateDisplay(state):
-    dw.fill(dw.purple)
+    dw.fill(dw.sage)
     dw.draw(myimage, state)
     dw.draw(pondimage, [200, 400, 0, 0])
     dw.draw(dogimage, [500, 80, 0, 0])
