@@ -11,8 +11,8 @@ import pygame as pg
 
 # Initialize world
 name = "Cat Go!"
-width = 500
-height = 500
+width = 1000
+height = 1000
 rw.newDisplay(width, height, name)
 
 # World state will be single x coordinate at left edge of world
@@ -20,11 +20,12 @@ rw.newDisplay(width, height, name)
 
 # Display the state by drawing a cat at that x coordinate
 myimage = dw.loadImage("cat.bmp")
-
+pondimage = dw.loadImage ("pond.bmp")
 
 def updateDisplay(state):
-    dw.fill(dw.black)
+    dw.fill(dw.purple)
     dw.draw(myimage, state)
+    dw.draw(pondimage, [200,400,0, 0])
 
 
 # We'll update the stnte on each tick by incrementing the x stateinate
@@ -40,7 +41,7 @@ def endState(state):
     else:
         return False
 
-
+    
 # For now we'll handle events just logging them to the console
 #
 #def handleEvent(state, event):
