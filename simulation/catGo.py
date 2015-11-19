@@ -29,7 +29,7 @@ faucetimage = dw.loadImage("faucet.bmp")
 
 
 def updateDisplay(state):
-    dw.fill(dw.purple)
+    dw.fill(dw.sage)
     dw.draw(myimage, state)
     dw.draw(dogimage, [200, 400, 0, 0])
     dw.draw(cactusimage, [580, 120, 0, 0])
