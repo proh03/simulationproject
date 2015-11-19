@@ -22,12 +22,21 @@ rw.newDisplay(width, height, name)
 myimage = dw.loadImage("cat.bmp")
 pondimage = dw.loadImage("pond.bmp")
 dogimage = dw.loadImage("dog2.bmp")
+waterimage = dw.loadImage("water.bmp")
+beeimage = dw.loadImage("bee.bmp")
+cactusimage = dw.loadImage("cactus.bmp")
+faucetimage = dw.loadImage("faucet.bmp")
+
 
 def updateDisplay(state):
     dw.fill(dw.purple)
     dw.draw(myimage, state)
-    dw.draw(pondimage, [200, 400, 0, 0])
-    dw.draw(dogimage, [500, 80, 0, 0])
+    dw.draw(dogimage, [200, 400, 0, 0])
+    dw.draw(cactusimage, [580, 120, 0, 0])
+    dw.draw(pondimage, [600, 500, 0, 0])
+    dw.draw(waterimage, [120, 0, 0, 0])
+    dw.draw(beeimage, [850, 300, 0, 0])
+    dw.draw(faucetimage, [300, 450, 0, 0])
 
 
 # We'll update the stnte on each tick by incrementing the x stateinate
