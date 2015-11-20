@@ -28,6 +28,7 @@ cactusimage = dw.loadImage("cactus.bmp")
 faucetimage = dw.loadImage("faucet.bmp")
 winimage = dw.loadImage("youwin.bmp")
 catfood = dw.loadImage ("catfood.bmp")
+instructionimage = dw.loadImage("instructions2.bmp")
 
 def updateDisplay(state):
     dw.fill(dw.sage)
@@ -41,7 +42,9 @@ def updateDisplay(state):
     dw.draw(faucetimage, [300, 450])
     if (state[0]>=900 and state[1]>=0):
         dw.draw(winimage, [250, 10])
-        
+    if (state[0]<=100 and state[1]<=100):
+        dw.draw(instructionimage, [200, 10])
+
 
 # We'll update the stnte on each tick by incrementing the x stateinate
 def updateState(state):
