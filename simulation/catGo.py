@@ -26,18 +26,22 @@ waterimage = dw.loadImage("water.bmp")
 beeimage = dw.loadImage("bee.bmp")
 cactusimage = dw.loadImage("cactus.bmp")
 faucetimage = dw.loadImage("faucet.bmp")
-
+winimage = dw.loadImage("youwin.bmp")
+catfood = dw.loadImage ("catfood.bmp")
 
 def updateDisplay(state):
     dw.fill(dw.sage)
-    dw.draw(myimage, state)
-    dw.draw(dogimage, [200, 400, 0, 0])
-    dw.draw(cactusimage, [580, 120, 0, 0])
-    dw.draw(pondimage, [600, 500, 0, 0])
-    dw.draw(waterimage, [120, 0, 0, 0])
-    dw.draw(beeimage, [850, 300, 0, 0])
-    dw.draw(faucetimage, [300, 450, 0, 0])
-
+    dw.draw (catfood, [920,0])
+    dw.draw(myimage, (state[0],state[1]))
+    dw.draw(dogimage, [200, 400])
+    dw.draw(cactusimage, [580, 120])
+    dw.draw(pondimage, [600, 500])
+    dw.draw(waterimage, [120, 0])
+    dw.draw(beeimage, [850, 300])
+    dw.draw(faucetimage, [300, 450])
+    if (state[0]>=900 and state[1]>=0):
+        dw.draw(winimage, [250, 10])
+        
 
 # We'll update the stnte on each tick by incrementing the x stateinate
 def updateState(state):
@@ -74,10 +78,15 @@ def handleEvent(state, event):
             return (newstate)
     else:
         return state
-        
+
+# the three modes of this game
+gameRunning = 0
+destinationReached = 1
+gameOver = 2
+    
 # Off we go! Start the cat at the left edge, and try for 30 FPS
 frameRate = 60
-initState = (0,0)
+initState = (0,0,gameRunning)
 # debug()
 rw.runWorld(initState, updateDisplay, updateState, handleEvent,
             endState, frameRate)
