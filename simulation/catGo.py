@@ -28,7 +28,7 @@ cactusimage = dw.loadImage("cactus.bmp")
 faucetimage = dw.loadImage("faucet.bmp")
 winimage = dw.loadImage("youwin.bmp")
 catfood = dw.loadImage ("catfood.bmp")
-instructionimage = dw.loadImage("instructions2.bmp")
+
 
 def updateDisplay(state):
     dw.fill(dw.sage)
@@ -42,10 +42,8 @@ def updateDisplay(state):
     dw.draw(faucetimage, [300, 450])
     if (state.x>=900 and state.y>=0):
         dw.draw(winimage, [250, 10])
-    if (state.x<=100 and state.y<=100):
-        dw.draw(instructionimage, [200, 10])
+    
         
-#code added in class. does it work? Hoo knows?
 
 class State:
     endState = False
