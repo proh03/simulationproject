@@ -32,17 +32,39 @@ catfood = dw.loadImage ("catfood.bmp")
 def updateDisplay(state):
     dw.fill(dw.sage)
     dw.draw (catfood, [920,0])
-    dw.draw(myimage, (state[0],state[1]))
+    dw.draw(myimage, (state.x, state.y))
     dw.draw(dogimage, [200, 400])
     dw.draw(cactusimage, [580, 120])
     dw.draw(pondimage, [600, 500])
     dw.draw(waterimage, [120, 0])
     dw.draw(beeimage, [850, 300])
     dw.draw(faucetimage, [300, 450])
-    if (state[0]>=900 and state[1]>=0):
+    if (state.x>=900 and state.y>=0):
         dw.draw(winimage, [250, 10])
-        
 
+#code added in class. does it work? Hoo knows?
+
+class State:
+    endState = False
+    updateDisplay = True    
+    def updatePosition(self, x, y):
+        self.x = x
+        self.y = y
+    def updateGameState(self, gameRunning):
+        self.isGameRunning = gameRunning
+    def goLeft(self):
+        self.updatePosition(self.x - 10, self.y)
+    def goRight(self):
+        self.updatePosition(self.x + 10, self.y)
+    def goUp(self):
+        self.updatePosition(self.x, self.y - 10)
+    def goDown(self):
+        self.updatePosition(self.x, self.y +10)
+        
+       
+#see line 103 for initState
+
+        
 # We'll update the stnte on each tick by incrementing the x stateinate
 def updateState(state):
     return(state)
@@ -51,7 +73,7 @@ def updateState(state):
 
 
 def endState(state):
-    if (state[0] >= width) or (state[0] < 0) or (state[1] > height) or (state[1] < 0):
+    if (state.x >= width) or (state.x < 0) or (state.y > height) or (state.y < 0):
         return True
     else:
         return False
@@ -65,19 +87,14 @@ def endState(state):
 def handleEvent(state, event):
     if (event.type == pg.KEYDOWN):
         if (event.key == pg.K_LEFT):
-            newstate = (state[0] - 10,state[1])
-            return (newstate)
+            state.goLeft()
         if (event.key == pg.K_RIGHT):
-            newstate = (state [0] + 10, state[1])
-            return (newstate)
+            state.goRight()
         if (event.key == pg.K_UP):
-            newstate = (state [0], state [1] - 10)
-            return (newstate)
+            state.goUp()
         if (event.key == pg.K_DOWN):
-            newstate = (state [0], state [1] + 10)
-            return (newstate)
-    else:
-        return state
+            state.goDown()
+    return state
 
 # the three modes of this game
 gameRunning = 0
@@ -86,7 +103,12 @@ gameOver = 2
     
 # Off we go! Start the cat at the left edge, and try for 30 FPS
 frameRate = 60
-initState = (0,0,gameRunning)
+
+initState = State()
+initState.updatePosition(0,0)
+initState.updateGameState(gameRunning)
+
+
 # debug()
 rw.runWorld(initState, updateDisplay, updateState, handleEvent,
             endState, frameRate)
